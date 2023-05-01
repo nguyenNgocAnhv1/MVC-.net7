@@ -1,0 +1,7 @@
+@{
+     var mess = TempData["ThongBao"] as string ;
+}
+@if (!string.IsNullOrEmpty(mess))
+{
+  <h6 class="bg-danger">@mess</h6>   
+}

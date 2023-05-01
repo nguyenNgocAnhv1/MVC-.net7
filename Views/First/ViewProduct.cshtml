@@ -1,0 +1,10 @@
+@model m01_Start.Models.ProductModel
+@{
+   var p2 = ViewData["p2"] as ProductModel;
+}
+<h4 class="bg-primary">From model</h4>
+<h5>Name: @Model.Name</h5>
+<h4 class="bg-success">Viewdata</h4>
+<h5>name: @p2.Name</h5>
+<h4 class="bg-warning">Viewbag</h4>
+<h5>name: @ViewBag.p3.Name</h5>

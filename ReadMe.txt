@@ -1,0 +1,4 @@
+-- retun view...
+-- viewbag is more stronger than view
+-- temdata
+-- config the system cshtml url (program.cs)
