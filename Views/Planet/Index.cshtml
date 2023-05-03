@@ -1,0 +1,10 @@
+@inject m01_Start.Services.PlanetService planet
+<h3>The hanh tinh in the he sun</h3>
+<div class="list-group">
+     @foreach (var p in planet)
+{
+     <a class="list-group-item list-group-item-action" asp-action="@p.name" asp-route-Name = "@p.name">
+          @p.name
+     </a>    
+}
+</div>

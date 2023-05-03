@@ -1,5 +1,10 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    var data = new Dictionary<string, string>()
+        {
+            {"id" ,"123"},
+            {"name" , "abc"}
+        };
 }
 
 <div class="text-center">
@@ -7,3 +12,32 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
     <partial name="_ThongBao"></partial>
 </div>
+<p>
+    @Url.Action()
+</p>
+<p>
+    @Url.ActionLink()
+</p>
+<p>
+    @Url.Action("Privacy")
+</p>
+<p>
+    @Url.Action("Privacy",new {stt =3,name = "na"})
+</p>
+<p>
+    @Url.Action("Mercury","Planet",new{Name = "Mercury"})
+</p>
+<p>
+    @Url.Action("Index","Product",new{ area = "ProductManage"})
+</p>
+<p>
+    @Url.RouteUrl("default",new {action = "privacy",controller = "Home"})
+</p>
+<p>
+    @Url.RouteUrl("routeUrl")
+</p>
+<a asp-route="routeUrl" asp-route-Name="Venus">Venus</a>
+<br>
+<a asp-all-route-data="@data">Check f12 to view link</a>
+<br>
+<a asp-controller="Product" asp-action="Index" asp-area="ProductManage">Index of product In area ProductManage</a>

@@ -1,0 +1,48 @@
+@using Microsoft.EntityFrameworkCore;
+@using System.Data;
+@using App;
+@inject AppDbContext dbContext
+@{
+     ViewData["Title"] = "Database Information";
+     var connect = dbContext.Database.GetDbConnection();
+     var dbName = connect.Database;
+     var isConnected = dbContext.Database.CanConnect();
+     var listMigrations = dbContext.Database.GetPendingMigrations();
+}
+<partial name="_ThongBao" />
+<h3>Database Infor</h3>
+@* <a href="" apr></a> *@
+<p>Dbname: @dbName</p>
+<p>Source: @connect.DataSource</p>
+<p>State: @connect.State</p>
+<hr>
+<h3>Migration</h3>
+@foreach (var item in listMigrations)
+{
+     <p>@item (pending)</p>
+}
+@if (listMigrations.Count() > 0)
+{
+     <form method="post">
+          <button type="submit" class="btn btn-danger" asp-action="Migrate">Update Migration</button>
+     </form>
+}
+<br>
+@if (isConnected)
+{
+     <h3>Tables</h3>
+     await dbContext.Database.OpenConnectionAsync();
+     var table = dbContext.Database.GetDbConnection().GetSchema("Tables");
+     <ul>
+          @foreach (System.Data.DataRow row in table.Rows)
+          {
+               <li>@row["TABLE_NAME"]</li>
+          }
+
+     </ul>
+     <a class="btn btn-danger" asp-action="DeleteDb">Delete database: @dbName</a>
+}
+else
+{
+     <p class="alert alert-danger">Can't connect to Database</p>
+}

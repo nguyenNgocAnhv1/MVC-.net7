@@ -38,6 +38,7 @@ namespace m01_Start.Controllers
             Form Ngoc Anh";
             return Content(content, "text/plain");
         }
+        [AcceptVerbs("Post","Get")]
         public IActionResult Bird()
         {
             string wwwPath = this.Environment.WebRootPath;
