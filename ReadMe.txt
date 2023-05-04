@@ -14,5 +14,5 @@
      dotnet tool install -g dotnet-aspnet-codegenerator
      dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
      dotnet aspnet-codegenerator -h
-     dotnet aspnet-codegenerator controller -name DbManage -namespace m01_Start.Controllers -outDir Areas/Database/Controllers
+     dotnet aspnet-codegenerator controller -name Contact -namespace m01_Start.Controllers.Contact -m m01_Start.Models.Contact -udl -dc App.AppDbContext -outDir Areas/Contact/Controllers
      dotnet aspnet-codegenerator area Database

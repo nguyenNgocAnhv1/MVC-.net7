@@ -1,7 +1,11 @@
+@using  m01_Start.Services
 @{
      var mess = TempData["_ThongBao"] as string ;
 }
 @if (!string.IsNullOrEmpty(mess))
 {
   <h6 class="alert alert-success">@mess</h6>   
+}
+@{
+  abc.highlight(mess);
 }

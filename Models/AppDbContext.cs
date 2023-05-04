@@ -1,3 +1,4 @@
+using m01_Start.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -5,6 +6,7 @@ namespace App
 {
     public class AppDbContext : DbContext
     {
+        public DbSet<Contact> Contacts { get; set; }
       
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {

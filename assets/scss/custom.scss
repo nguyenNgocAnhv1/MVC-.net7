@@ -1,0 +1,14 @@
+h1{
+     color: red;
+}
+.mycustom{
+     background-color: aqua !important;
+     a{
+          color: rgb(208, 132, 32) !important;
+          &:hover{
+               font-family: 'Courier New', Courier, monospace;
+               font-size: 20px !important;
+          }
+     }
+     
+}
