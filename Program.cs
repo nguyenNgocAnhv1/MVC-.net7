@@ -24,6 +24,7 @@ builder.Services.Configure<RazorViewEngineOptions>(option =>
 // add services
 builder.Services.AddSingleton<ProductService>();
 builder.Services.AddSingleton<PlanetService>();
+builder.Services.AddSingleton<IEmailSender, SendMailService>();
 
 
 
