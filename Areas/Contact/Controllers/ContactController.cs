@@ -73,7 +73,6 @@ namespace m01_Start.Controllers.Contact
                {
                     _ThongBao = "Success to send contact";
                     abc.highlight(_ThongBao);
-                    System.Console.WriteLine("hello");
                     _context.Add(contact);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
