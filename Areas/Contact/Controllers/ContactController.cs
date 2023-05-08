@@ -10,11 +10,13 @@ using m01_Start.Models;
 using ContactModel = m01_Start.Models.Contact;
 using Microsoft.AspNetCore.Authorization;
 using m01_Start.Services;
+using App.Data;
 
 namespace m01_Start.Controllers.Contact
 {
      [Area("Contact")]
      [Route("/Contact/{action=index}")]
+     [Authorize(Roles = RoleName.Administrator)]
      public class ContactController : Controller
      {
 

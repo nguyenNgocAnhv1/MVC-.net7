@@ -1,4 +1,6 @@
 using App;
+using App.Data;
+using App.Services;
 using m01_Start;
 using m01_Start.Models;
 using m01_Start.Services;
@@ -12,8 +14,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddRazorPages();
- // config mail settings
- builder.Services.AddOptions();
+// config mail settings
+builder.Services.AddOptions();
 var mailSettings = builder.Configuration.GetSection("MailSettings");
 builder.Services.Configure<MailSettings>(mailSettings);
 builder.Services.AddSingleton<IEmailSender, SendMailService>();
@@ -30,8 +32,17 @@ builder.Services.Configure<RazorViewEngineOptions>(option =>
 // add services
 builder.Services.AddSingleton<ProductService>();
 builder.Services.AddSingleton<PlanetService>();
+builder.Services.AddSingleton<IdentityErrorDescriber, AppIdentityErrorDescriber>();
 
+// Congif Role
+builder.Services.AddAuthorization(option =>
+{
+     option.AddPolicy("ViewManageMenu", o => {
+          o.RequireAuthenticatedUser();
+          o.RequireRole(RoleName.Administrator);
 
+     });
+});
 
 // Setup dbcontext
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -45,7 +56,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddDefaultIdentity<AppUser>()
                        .AddRoles<IdentityRole>()      // add fix add role error
                        .AddEntityFrameworkStores<AppDbContext>()
-                    //    .AddDefaultTokenProviders()
+                       //    .AddDefaultTokenProviders()
                        ;
 
 // Config Identity 

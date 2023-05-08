@@ -1,0 +1,36 @@
+﻿@using m01_Start.Services
+@model App.Areas.Identity.Models.AccountViewModels.SendCodeViewModel
+@{
+
+    ViewData["Title"] = "Gửi mã xác thực";
+    var url = "";
+    try{
+        url = Model.ReturnUrl;
+    }catch{
+        abc.highlight("Url ok");
+    }
+   
+}
+
+<h1>@ViewData["Title"].</h1>
+<form asp-controller="Account" asp-action="SendCode" asp-route-returnurl= "@url" method="post"
+    class="form-horizontal" role="form">
+    <input asp-for="RememberMe" type="hidden" />
+    <div class="row">
+        <div class="col-md-8">
+            Mã xác thực gửi tới:
+            @try
+            {
+                <select asp-for="SelectedProvider" asp-items="Model.Providers"></select>
+
+            }catch{
+                System.Console.WriteLine("NOt ok");
+            }
+            <button type="submit" class="btn btn-success btn-sm">Gửi</button>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
