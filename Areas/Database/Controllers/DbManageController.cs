@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using App;
 using App.Data;
+using App.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
