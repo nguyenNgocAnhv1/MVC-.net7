@@ -1,0 +1,104 @@
+@model IPagedList<App.Models.Post>
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<partial name ="_StatusMessage"/>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                STT
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Slug)
+            </th>
+            @* <th>
+                @Html.DisplayNameFor(model => model.First().Content)
+                </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.First().Published)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().DateCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().DateUpdated)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @(ViewBag.stt++)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                    <br>
+                    <small>
+                        
+                       @try
+                       {
+                         @string.Join(", ",item.PostCategories.Select(pc => pc.Category.Title))
+                      
+                       }
+                       catch (System.Exception)
+                       {
+                        
+                        @* throw; *@
+                       }
+                    </small>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Slug)
+                </td>
+                @* <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                    </td> *@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Published)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateUpdated)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.PostId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.PostId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.PostId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, pagesize = ViewBag.pageSize}), new
+PagedListRenderOptions {
+LiElementClasses = new string[] { "page-item" },
+PageClasses = new string[] { "page-link" }})
