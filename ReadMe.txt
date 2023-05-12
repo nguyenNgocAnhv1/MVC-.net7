@@ -29,3 +29,16 @@
 ==> M08: Use summerload
      + Import lib js and css, by libman
      + Summernote is ease to use, check  the Summernote Home to view more
+
+==> M10: Elfinder
+     + Add lib in libman 
+      {
+      "library": "jqueryui@1.12.1",
+      "destination": "wwwroot/lib/jqueryui"
+    },
+    {
+      "library": "elfinder@2.1.57",
+      "destination": "wwwroot/lib/elfinder"
+    }
+    Config some parameter in File manage controller
+    If you want to update Elfinder in summernote, you must config againt _Summernote.cshtml in shared folder

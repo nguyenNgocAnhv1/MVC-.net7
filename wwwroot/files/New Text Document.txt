@@ -1,0 +1,3 @@
+1. Tại sao không bị ghi đè tại index
+2. Cách lấy dữ liệu từ route 
+3. Cách set default query

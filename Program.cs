@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -38,7 +39,8 @@ builder.Services.AddSingleton<IdentityErrorDescriber, AppIdentityErrorDescriber>
 // Congif Role
 builder.Services.AddAuthorization(option =>
 {
-     option.AddPolicy("ViewManageMenu", o => {
+     option.AddPolicy("ViewManageMenu", o =>
+     {
           o.RequireAuthenticatedUser();
           o.RequireRole(RoleName.Administrator);
 
@@ -101,7 +103,13 @@ builder.Services.AddAuthentication()
            })
            // .AddTwitter()
            ;
-
+builder.Services.ConfigureApplicationCookie(option =>
+      {
+           option.LoginPath = "/login";
+           option.LogoutPath = "/Identity/Account/Login/";
+           option.AccessDeniedPath = "/abc";
+           // option.AccessDeniedPath = "/Index";
+      });
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -112,6 +120,12 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions(){
+     FileProvider = new PhysicalFileProvider(Path.Combine(
+          Directory.GetCurrentDirectory(),"Uploads"    
+     )),
+     RequestPath = "/contents"
+});
 app.UseRouting();
 
 // configure the authentication (Must to srart identity)
