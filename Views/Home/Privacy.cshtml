@@ -1,6 +1,18 @@
 ﻿@{
     ViewData["Title"] = "Privacy Policy";
+    var SummerNote = new m01_Start.Models.Summernote("Summernote",true);
+    var SummerNote2 = new m01_Start.Models.Summernote("Summernote2",false,500);
+
 }
 <h1>@ViewData["Title"]</h1>
 
 <p>Use this page to detail your site's privacy policy.</p>
+<textarea id="Summernote"></textarea>
+<textarea id="Summernote2"></textarea>
+
+<partial name ="_Summernote" model = "SummerNote" />
+<partial name ="_Summernote" model = "SummerNote2" />
+
+
+
+

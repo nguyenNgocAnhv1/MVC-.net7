@@ -1,0 +1,25 @@
+@model m01_Start.Models.Summernote
+@if (Model.loadLib)
+{
+     <script src="~/lib/summernote/summernote-bs5.js"></script>
+     <link rel="stylesheet" href="~/lib/summernote/summernote-bs5.css">
+
+
+}
+<script>
+     $(document).ready(function () {
+
+          $("#@Model.IdEditor").summernote({
+               height: @Model.height
+          });
+          let buttons = $('.note-editor button[data-toggle="dropdown"]');
+
+          buttons.each((key, value) => {
+               $(value).on('click', function (e) {
+                    $(this).attr('data-bs-toggle', 'dropdown')
+                    console.log()
+                    ata('id', 'dropdownMenu');
+               })
+          })
+     });
+</script>

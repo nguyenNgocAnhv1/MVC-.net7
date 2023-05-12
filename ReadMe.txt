@@ -24,3 +24,8 @@
 + libman init
 + Config  by hand made
 + libman restore
+
+
+==> M08: Use summerload
+     + Import lib js and css, by libman
+     + Summernote is ease to use, check  the Summernote Home to view more

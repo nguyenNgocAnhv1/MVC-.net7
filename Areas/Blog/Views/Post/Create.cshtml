@@ -15,7 +15,8 @@
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="CategoryIDs" class="control-label"></label>
-                <select class="w-20" asp-for="CategoryIDs" multiple="multiple" asp-items="list" class="form-control"></select>
+                <select class="w-20" asp-for="CategoryIDs" multiple="multiple" asp-items="list"
+                    class="form-control"></select>
                 <span asp-validation-for="CategoryIDs" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -35,7 +36,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Content" class="control-label"></label>
-                <input asp-for="Content" class="form-control" />
+                <textarea asp-for="Content" class="form-control" ></textarea>
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
@@ -69,3 +70,8 @@
 </script>
 <partial name="_ValidationScriptsPartial" />
 }
+@{
+    var SummerNote = new m01_Start.Models.Summernote("Content", true);
+
+}
+<partial name="_Summernote" model="SummerNote" />
