@@ -1,14 +1,37 @@
-h1{
-     color: red;
-}
+
 .mycustom{
-     background-color: aqua !important;
+     // background-color: rgb(10, 53, 103) !important;
      a{
-          color: rgb(208, 132, 32) !important;
+          // color: rgb(255, 255, 255) ;
           &:hover{
-               font-family: 'Courier New', Courier, monospace;
-               font-size: 20px !important;
+               // font-family: 'Courier New', Courier, monospace;
+               // font-size: 20px !important;
+               // color: chartreuse;
           }
      }
      
+}
+.Sidebar{
+     ul,li{
+          list-style: none;
+          padding-left: 10px;
+     }
+     a{
+          text-decoration: none;
+          &:hover{
+               color: rgb(102, 255, 0);
+               font-weight: bold;
+          }
+          &.active{
+               color: rgb(51, 6, 114);
+          }
+     }
+     >ul>li>a{
+          color: rgb(23, 93, 70);
+          font-weight: bolder;
+     }
+     h3{
+          text-transform: uppercase;
+          border-bottom: solid 2px red;
+     }
 }

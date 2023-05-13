@@ -8,5 +8,11 @@ namespace m01_Start.Services
                System.Console.WriteLine(abc);
                System.Console.WriteLine("================================");
           }
+           public static void a(string abc)
+          {
+               System.Console.WriteLine("================================");
+               System.Console.WriteLine(abc);
+               System.Console.WriteLine("================================");
+          }
      }
 }

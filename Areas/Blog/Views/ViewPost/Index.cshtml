@@ -1,0 +1,72 @@
+@model IPagedList<App.Models.Post>
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common
+@using m01_Start.Components
+@using m01_Start.Services
+@{
+     List<Category> categories = ViewBag.categories as List<Category>;
+     var category = ViewBag.category as Category;
+     ViewBag.title = (category != null) ? category.Title : "All Categories Post";
+}
+<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    @if( category != null){
+     var li = category.ListParent();
+     foreach (var item in li){
+    <li class="breadcrumb-item active" aria-current="page">
+     <a asp-action="Index" asp-controller="Viewpost" asp-route-categorySlug ="@item.Slug">@item.Title</a>
+    </li>
+          
+     }
+    }
+  </ol>
+</nav>
+<h3>@ViewBag.title</h3>
+@if (category != null)
+{
+     <p>@category.Content</p>
+}
+else
+{
+     <p>All Category Post</p>
+}
+<hr>
+@foreach (var post in Model)
+{
+ <div class="d-flex mb-5 ">
+      <div class="flex-shrink-0">
+               <img height="50" src="/contents/noimg.png" alt="...">
+          </div>
+          <div class="flex-grow-1 ms-3">
+               <h5>
+                    <a asp-action="Detail" asp-controller= "Viewpost" asp-area="Blog" asp-route-postSlug= "@post.Slug" >
+                         @post.Title
+                    </a>
+               </h5>
+               @post.Description
+               <div class="">
+                    <strong>@post.PostCategories.FirstOrDefault()?.Category.Title </strong>
+               </div>
+               <div class="author-row">
+                    Author: <strong>@post.Author.UserName</strong> | Dateupdate: <strong>@post.DateUpdated    </strong> 
+
+               </div>
+          </div>
+     </div>
+}
+@section Sidebar{
+@await Component.InvokeAsync("m01_Start.Components.CategorySidebar", new CategorySidebar(){
+Categories = categories,
+level = 0,
+caregorySlug = ViewBag.categorySlug
+})
+}
+
+
+@* config page lít *@
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, pagesize = ViewBag.pageSize}), new
+PagedListRenderOptions {
+LiElementClasses = new string[] { "page-item" },
+PageClasses = new string[] { "page-link" }})

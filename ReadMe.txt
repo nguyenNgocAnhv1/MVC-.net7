@@ -42,3 +42,4 @@
     }
     Config some parameter in File manage controller
     If you want to update Elfinder in summernote, you must config againt _Summernote.cshtml in shared folder
+

@@ -1,0 +1,33 @@
+@using m01_Start.Components
+@using m01_Start.Services
+@model m01_Start.Components.CategorySidebar
+@{
+}
+@if (Model.Categories?.Count > 0)
+{
+     @if (Model.level == 0)
+     {
+          <h3>
+               <a asp-controller="Viewpost" asp-action="Index" asp-area="Blog" asp-route-categorySlug="">All Category</a>
+          </h3>
+     }
+     <ul>
+          @foreach (var category in Model.Categories)
+          {
+               var cssActive = (category.Slug == Model.caregorySlug) ? "active" : "";
+               <li>
+                    <a class="@cssActive" asp-controller="Viewpost" asp-action="Index" asp-area="Blog"
+               asp-route-categorySlug="@category.Slug">@category.Title</a>
+                    @if (category.CategoryChildren?.Count > 0)
+                    {
+                         @await Component.InvokeAsync("m01_Start.Components.CategorySidebar",
+          new CategorySidebar(){
+          Categories = category.CategoryChildren.ToList(),
+          level = Model.level +1,
+          caregorySlug = ViewBag.categorySlug
+          })
+                    }
+               </li>
+          }
+     </ul>
+}

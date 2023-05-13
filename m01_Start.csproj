@@ -19,7 +19,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.oAuth" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIDConnect" Version="7.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Twitter" Version="7.0.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="7.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.5" />

@@ -7,7 +7,11 @@ html {
     font-size: 16px;
   }
 }
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
@@ -18,20 +22,27 @@ html {
 
 body {
   margin-bottom: 60px;
-  color: rebeccapurple;
 }
 
-h1 {
-  color: red;
+.Sidebar ul, .Sidebar li {
+  list-style: none;
+  padding-left: 10px;
 }
-
-.mycustom {
-  background-color: aqua !important;
+.Sidebar a {
+  text-decoration: none;
 }
-.mycustom a {
-  color: rgb(208, 132, 32) !important;
+.Sidebar a:hover {
+  color: rgb(102, 255, 0);
+  font-weight: bold;
 }
-.mycustom a:hover {
-  font-family: "Courier New", Courier, monospace;
-  font-size: 20px !important;
+.Sidebar a.active {
+  color: rgb(51, 6, 114);
+}
+.Sidebar > ul > li > a {
+  color: rgb(23, 93, 70);
+  font-weight: bolder;
+}
+.Sidebar h3 {
+  text-transform: uppercase;
+  border-bottom: solid 2px red;
 }

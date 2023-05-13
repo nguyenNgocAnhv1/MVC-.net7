@@ -37,8 +37,34 @@ namespace App.Models
           [Display(Name = "Danh mục chaa")]
           public int? ParentCategoryId { get; set; }
           [ForeignKey("ParentCategoryId")]
-          [Display(Name = "Danh mục cha")]   
+          [Display(Name = "Danh mục cha")]
           public Category? ParentCategory { set; get; }
 
+
+          public void ChildCategoryId(ICollection<Category> childcate, List<int> lists)
+          {
+               if (childcate == null)
+               {
+                    childcate = this.CategoryChildren;
+               }
+               foreach (Category category in childcate)
+               {
+                    lists.Add(category.Id);
+                    ChildCategoryId(category.CategoryChildren, lists);
+               }
+          }
+          public List<Category> ListParent()
+          {
+               List<Category> li = new List<Category>();
+               var parent = this.ParentCategory;
+               while (parent != null)
+               {
+                    li.Add(parent as Category);
+                    parent = parent.ParentCategory;
+               }
+               li.Reverse();
+               return li;
+          }
+          
      }
 }
